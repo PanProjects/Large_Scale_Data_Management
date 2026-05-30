@@ -1,6 +1,5 @@
 import os
 from time import perf_counter
-
 from pyspark.sql import SparkSession
 
 HDFS_ROOT = "hdfs://hdfs-namenode.default.svc.cluster.local:9000"
