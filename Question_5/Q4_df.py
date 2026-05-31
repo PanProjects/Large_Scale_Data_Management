@@ -11,16 +11,12 @@ CRIME_PATH   = f"{HDFS_ROOT}/data/LA_Crime_Data"
 STATION_PATH = f"{HDFS_ROOT}/data/LA_Police_Stations.csv"
 RESULT_PATH  = f"{HDFS_ROOT}/user/{DSML_USER}/results/Q4_df_result"
 
-# Degrees-to-km scale factors at 34°N latitude (Los Angeles)
-# 1° lat ≈ 111 km,  1° lon ≈ 111 × cos(34°) ≈ 92 km
 KM_PER_LAT = 111.0
 KM_PER_LON = 92.0
 
 spark = SparkSession.builder.appName("Q4_DataFrame").getOrCreate()
 spark.sparkContext.setLogLevel("ERROR")
 
-# Load crime data — keep only records with valid GPS coordinates
-# LAT=0 / LON=0 means location unknown in this dataset
 crimes = (
     spark.read
     .option("header", "true")
@@ -34,7 +30,6 @@ crimes = (
     .select("DR_NO", "LAT", "LON")
 )
 
-# Load police stations (21 rows), small enough to broadcast to every executor
 stations = (
     spark.read
     .option("header", "true")
@@ -47,10 +42,6 @@ stations = (
     .filter(F.col("st_lat").isNotNull() & F.col("st_lon").isNotNull())
 )
 
-# Cross join crimes × stations and compute Euclidean distance in km.
-# Catalyst selects BroadcastNestedLoopJoin because stations has only 21 rows (~2 KB):
-# the whole table is sent to every executor so all 21 distances are computed locally,
-# with no shuffle of the large crime dataset.
 distances = (
     crimes.crossJoin(F.broadcast(stations))
     .withColumn(
@@ -62,10 +53,6 @@ distances = (
     )
 )
 
-# Find nearest station per crime.
-# F.min on a struct compares lexicographically, so the first field (distance_km)
-# drives the comparison — this gives the row with the smallest distance in a
-# single groupBy pass, without needing a Window function or a self-join.
 nearest = (
     distances
     .groupBy("DR_NO")
@@ -76,7 +63,6 @@ nearest = (
     )
 )
 
-# Aggregate per division: count crimes and compute average distance
 result_df = (
     nearest
     .groupBy("division")
@@ -88,7 +74,7 @@ result_df = (
     .select("division", "average_distance", "crime_count")
 )
 
-# Print the physical plan chosen by the Catalyst optimizer
+
 print("\n=== Physical Plan ===")
 result_df.explain("formatted")
 print("====================\n")
