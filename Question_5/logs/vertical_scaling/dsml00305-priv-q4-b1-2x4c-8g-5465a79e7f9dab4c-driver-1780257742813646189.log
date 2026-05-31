@@ -1,0 +1,100 @@
+Join condition: None
+
+(8) Project
+Output [3[]: [DR_NO#17, division#106, SQRT((POWER(((LAT#43 - st_lat#107) * 111.0), 2.0) + POWER(((LON#44 - st_lon#108) * 92.0), 2.0))) AS distance_km#119]
+Input [6[]: [DR_NO#17, LAT#43, LON#44, division#106, st_lat#107, st_lon#108[]
+
+(9) Sort
+Input [3[]: [DR_NO#17, division#106, distance_km#119[]
+Arguments: [DR_NO#17 ASC NULLS FIRST[], false, 0
+
+(10) SortAggregate
+Input [3[]: [DR_NO#17, division#106, distance_km#119[]
+Keys [1[]: [DR_NO#17[]
+Functions [1[]: [partial_min(struct(distance_km, distance_km#119, division, division#106))]
+Aggregate Attributes [1[]: [min#162[]
+Results [2[]: [DR_NO#17, min#163[]
+
+(11) Exchange
+Input [2[]: [DR_NO#17, min#163[]
+Arguments: hashpartitioning(DR_NO#17, 200), ENSURE_REQUIREMENTS, [plan_id=99]
+
+(12) Sort
+Input [2[]: [DR_NO#17, min#163[]
+Arguments: [DR_NO#17 ASC NULLS FIRST[], false, 0
+
+(13) SortAggregate
+Input [2[]: [DR_NO#17, min#163[]
+Keys [1[]: [DR_NO#17[]
+Functions [1[]: [min(struct(distance_km, distance_km#119, division, division#106))]
+Aggregate Attributes [1[]: [min(struct(distance_km, distance_km#119, division, division#106))#134]
+Results [1[]: [min(struct(distance_km, distance_km#119, division, division#106))#134 AS nearest#135]
+
+(14) Project
+Output [2[]: [nearest#135.division AS division#138, nearest#135.distance_km AS distance_km#139[]
+Input [1[]: [nearest#135[]
+
+(15) HashAggregate
+Input [2[]: [division#138, distance_km#139[]
+Keys [1[]: [division#138[]
+Functions [2[]: [partial_avg(distance_km#139), partial_count(1)]
+Aggregate Attributes [3[]: [sum#156, count#157L, count#158L[]
+Results [4[]: [division#138, sum#159, count#160L, count#161L[]
+
+(16) Exchange
+Input [4[]: [division#138, sum#159, count#160L, count#161L[]
+Arguments: hashpartitioning(division#138, 200), ENSURE_REQUIREMENTS, [plan_id=105]
+
+(17) HashAggregate
+Input [4[]: [division#138, sum#159, count#160L, count#161L[]
+Keys [1[]: [division#138[]
+Functions [2[]: [avg(distance_km#139), count(1)]
+Aggregate Attributes [2[]: [avg(distance_km#139)#146, count(1)#148L]
+Results [3[]: [division#138, round(avg(distance_km#139)#146, 3) AS average_distance#147, count(1)#148L AS crime_count#149L]
+
+(18) Exchange
+Input [3[]: [division#138, average_distance#147, crime_count#149L[]
+Arguments: rangepartitioning(crime_count#149L DESC NULLS LAST, 200), ENSURE_REQUIREMENTS, [plan_id=108]
+
+(19) Sort
+Input [3[]: [division#138, average_distance#147, crime_count#149L[]
+Arguments: [crime_count#149L DESC NULLS LAST[], true, 0
+
+(20) AdaptiveSparkPlan
+Output [3[]: [division#138, average_distance#147, crime_count#149L[]
+Arguments: isFinalPlan=false
+
+
+====================
+
+
+=== Query 4 Results (DataFrame API) ===
++----------------+----------------+-----------+
+|        division|average_distance|crime_count|
++----------------+----------------+-----------+
+|       HOLLYWOOD|           2.071|     224073|
+|        VAN NUYS|           2.937|     208203|
+|       SOUTHWEST|           2.187|     189119|
+|        WILSHIRE|           2.589|     186383|
+|     77TH STREET|           1.714|     170620|
+| NORTH HOLLYWOOD|           2.644|     168204|
+|         OLYMPIC|           1.727|     162856|
+|         PACIFIC|           3.846|     162027|
+|         CENTRAL|           0.992|     154689|
+|         RAMPART|           1.532|     153204|
+|       SOUTHEAST|           2.438|     143803|
+|     WEST VALLEY|           3.016|     136342|
+|        FOOTHILL|           4.258|     132153|
+|         TOPANGA|           3.296|     131262|
+|          HARBOR|           3.693|     127071|
+|      HOLLENBECK|           2.673|     116244|
+|WEST LOS ANGELES|           2.785|     115969|
+|          NEWTON|           1.632|     111392|
+|       NORTHEAST|           3.619|     108234|
+|         MISSION|           3.671|      98136|
+|      DEVONSHIRE|           2.824|      77189|
++----------------+----------------+-----------+
+
+QUERY_ELAPSED_SECONDS=28.095
+Result saved to: hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/results/Q4_df_result
+stream closed EOF for dsml00305-priv/q4-b1-2x4c-8g-5465a79e7f9dab4c-driver (spark-kubernetes-driver)
