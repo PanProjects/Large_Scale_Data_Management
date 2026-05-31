@@ -1,0 +1,82 @@
+26/05/31 16:28:43 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/05/31 16:28:45 INFO SparkContext: Running Spark version 3.5.8
+26/05/31 16:28:45 INFO SparkContext: OS info Linux, 6.1.0-48-amd64, amd64
+26/05/31 16:28:45 INFO SparkContext: Java version 11.0.29
+26/05/31 16:28:45 INFO ResourceUtils: ==============================================================
+26/05/31 16:28:45 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/05/31 16:28:45 INFO ResourceUtils: ==============================================================
+26/05/31 16:28:45 INFO SparkContext: Submitted application: Q3_DataFrame
+26/05/31 16:28:45 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/05/31 16:28:45 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/05/31 16:28:45 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/05/31 16:28:45 INFO SecurityManager: Changing view acls to: spark,dsml00305
+26/05/31 16:28:45 INFO SecurityManager: Changing modify acls to: spark,dsml00305
+26/05/31 16:28:45 INFO SecurityManager: Changing view acls groups to: 
+26/05/31 16:28:45 INFO SecurityManager: Changing modify acls groups to: 
+26/05/31 16:28:45 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, dsml00305; groups with view permissions: EMPTY; users with modify permissions: spark, dsml00305; groups with modify permissions: EMPTY
+26/05/31 16:28:45 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+26/05/31 16:28:45 INFO SparkEnv: Registering MapOutputTracker
+26/05/31 16:28:45 INFO SparkEnv: Registering BlockManagerMaster
+26/05/31 16:28:45 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/05/31 16:28:45 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/05/31 16:28:45 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/05/31 16:28:45 INFO DiskBlockManager: Created local directory at /var/data/spark-3fb4a340-19a6-44b0-acef-b734a13206c8/blockmgr-1acd4972-a539-4385-888b-879720637cae
+26/05/31 16:28:45 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/05/31 16:28:45 INFO SparkEnv: Registering OutputCommitCoordinator
+26/05/31 16:28:46 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/05/31 16:28:46 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/05/31 16:28:46 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+26/05/31 16:28:48 INFO ExecutorPodsAllocator: Going to request 3 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 0, sharedSlotFromPendingPods: 2147483647.
+26/05/31 16:28:48 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+26/05/31 16:28:48 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+26/05/31 16:28:48 INFO NettyBlockTransferService: Server created on q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc 10.233.126.106:7079
+26/05/31 16:28:48 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/05/31 16:28:48 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:28:48 INFO BlockManagerMasterEndpoint: Registering block manager q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc:7079 with 413.9 MiB RAM, BlockManagerId(driver, q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:28:48 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:28:48 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, q3-df-py-7e90939e7edda428-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:28:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:28:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:28:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:28:48 INFO SingleEventLogFileWriter: Logging events to hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/logs/spark-ed464e8b216e4a8f9aa16b468f46a388.inprogress
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.98.153:44818
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.124.240:43174
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.126.72:48536
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.98.153:44822) with ID 1,  ResourceProfileId 0
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.124.240:43184) with ID 2,  ResourceProfileId 0
+26/05/31 16:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.98.153:45483 with 1048.8 MiB RAM, BlockManagerId(1, 10.233.98.153, 45483, None)
+26/05/31 16:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.124.240:41313 with 1048.8 MiB RAM, BlockManagerId(2, 10.233.124.240, 41313, None)
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.126.72:48540) with ID 3,  ResourceProfileId 0
+26/05/31 16:28:53 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+26/05/31 16:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.126.72:38999 with 1048.8 MiB RAM, BlockManagerId(3, 10.233.126.72, 38999, None)
+
+=== Query 3 Results (DataFrame API) ===
++-----+---------+--------+-------------+-----------------+
+|  zip|total_pop|total_hu|median_income|per_capita_income|
++-----+---------+--------+-------------+-----------------+
+|90001|    55859|   13820|      52806.0|         13064.66|
+|90002|    53150|   13036|      46159.0|         11321.33|
+|90003|    72764|   18244|      47733.0|         11968.02|
+|90004|    58585|   24944|      54947.0|         23395.03|
+|90005|    37987|   18721|      44913.0|         22134.32|
+|90006|    58229|   21425|      41068.0|         15110.72|
+|90007|    40944|   14971|      33222.0|         12147.48|
+|90008|    33041|   15112|      49379.0|         22584.53|
+|90010|     5400|    3152|      76547.0|         44680.77|
+|90011|   102308|   24348|      47126.0|         11215.39|
+|90012|    33851|   15327|      53278.0|         24123.13|
+|90013|    15589|    9420|      22291.0|         13469.83|
+|90014|     9254|    6788|      31332.0|         22982.67|
+|90015|    27324|   14593|      53062.0|         28338.96|
+|90016|    46512|   17716|      53659.0|         20438.23|
+|90017|    27295|   15191|      44607.0|         24825.97|
+|90018|    50179|   17553|      55275.0|         19335.62|
+|90019|    62002|   25266|      61616.0|          25108.7|
+|90020|    38694|   18516|      51013.0|         24410.93|
+|90021|     5192|    1725|      25364.0|          8426.98|
++-----+---------+--------+-------------+-----------------+
+only showing top 20 rows
+
+QUERY_ELAPSED_SECONDS=20.086
+Result saved to: hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/results/Q3_df_result
+stream closed EOF for dsml00305-priv/q3-df-py-7e90939e7edda428-driver (spark-kubernetes-driver)

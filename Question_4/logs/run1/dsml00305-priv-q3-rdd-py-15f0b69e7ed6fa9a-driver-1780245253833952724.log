@@ -1,0 +1,76 @@
+26/05/31 16:21:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/05/31 16:21:27 INFO SparkContext: Running Spark version 3.5.8
+26/05/31 16:21:27 INFO SparkContext: OS info Linux, 6.1.0-48-amd64, amd64
+26/05/31 16:21:27 INFO SparkContext: Java version 11.0.29
+26/05/31 16:21:27 INFO ResourceUtils: ==============================================================
+26/05/31 16:21:27 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/05/31 16:21:27 INFO ResourceUtils: ==============================================================
+26/05/31 16:21:27 INFO SparkContext: Submitted application: Q3_RDD
+26/05/31 16:21:27 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/05/31 16:21:27 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/05/31 16:21:27 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/05/31 16:21:27 INFO SecurityManager: Changing view acls to: spark,dsml00305
+26/05/31 16:21:27 INFO SecurityManager: Changing modify acls to: spark,dsml00305
+26/05/31 16:21:27 INFO SecurityManager: Changing view acls groups to: 
+26/05/31 16:21:27 INFO SecurityManager: Changing modify acls groups to: 
+26/05/31 16:21:27 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, dsml00305; groups with view permissions: EMPTY; users with modify permissions: spark, dsml00305; groups with modify permissions: EMPTY
+26/05/31 16:21:27 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+26/05/31 16:21:27 INFO SparkEnv: Registering MapOutputTracker
+26/05/31 16:21:27 INFO SparkEnv: Registering BlockManagerMaster
+26/05/31 16:21:27 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/05/31 16:21:27 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/05/31 16:21:27 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/05/31 16:21:27 INFO DiskBlockManager: Created local directory at /var/data/spark-8e465d04-64c4-4fb0-9ac0-0f0037d9d2c5/blockmgr-9f19686c-8f8a-4cd8-86d1-3fd1a21fe06c
+26/05/31 16:21:27 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/05/31 16:21:27 INFO SparkEnv: Registering OutputCommitCoordinator
+26/05/31 16:21:28 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/05/31 16:21:28 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/05/31 16:21:28 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+26/05/31 16:21:30 INFO ExecutorPodsAllocator: Going to request 3 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 0, sharedSlotFromPendingPods: 2147483647.
+26/05/31 16:21:30 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+26/05/31 16:21:30 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+26/05/31 16:21:30 INFO NettyBlockTransferService: Server created on q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc 10.233.126.65:7079
+26/05/31 16:21:30 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/05/31 16:21:30 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:21:30 INFO BlockManagerMasterEndpoint: Registering block manager q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc:7079 with 413.9 MiB RAM, BlockManagerId(driver, q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:21:30 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:21:30 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, q3-rdd-py-15f0b69e7ed6fa9a-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 16:21:30 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:21:31 INFO SingleEventLogFileWriter: Logging events to hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/logs/spark-593101a7530a4c4b8686966101aed33a.inprogress
+26/05/31 16:21:31 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:21:31 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 16:21:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.98.161:49020
+26/05/31 16:21:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.98.173:43414
+26/05/31 16:21:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.124.210:50306
+26/05/31 16:21:36 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.98.161:49032) with ID 1,  ResourceProfileId 0
+26/05/31 16:21:36 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.124.210:50310) with ID 2,  ResourceProfileId 0
+26/05/31 16:21:36 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.98.173:43418) with ID 3,  ResourceProfileId 0
+26/05/31 16:21:36 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.98.161:45753 with 1048.8 MiB RAM, BlockManagerId(1, 10.233.98.161, 45753, None)
+26/05/31 16:21:36 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+26/05/31 16:21:36 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.124.210:42673 with 1048.8 MiB RAM, BlockManagerId(2, 10.233.124.210, 42673, None)
+26/05/31 16:21:36 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.98.173:37393 with 1048.8 MiB RAM, BlockManagerId(3, 10.233.98.173, 37393, None)
+
+=== Query 3 Results (RDD API) ===
+  ZIP=90001  pop=55,859  hu=13,820  median_income=$52,806.00  per_capita=$13,064.66
+  ZIP=90002  pop=53,150  hu=13,036  median_income=$46,159.00  per_capita=$11,321.33
+  ZIP=90003  pop=72,764  hu=18,244  median_income=$47,733.00  per_capita=$11,968.02
+  ZIP=90004  pop=58,585  hu=24,944  median_income=$54,947.00  per_capita=$23,395.03
+  ZIP=90005  pop=37,987  hu=18,721  median_income=$44,913.00  per_capita=$22,134.32
+  ZIP=90006  pop=58,229  hu=21,425  median_income=$41,068.00  per_capita=$15,110.72
+  ZIP=90007  pop=40,944  hu=14,971  median_income=$33,222.00  per_capita=$12,147.48
+  ZIP=90008  pop=33,041  hu=15,112  median_income=$49,379.00  per_capita=$22,584.53
+  ZIP=90010  pop=5,400  hu=3,152  median_income=$76,547.00  per_capita=$44,680.77
+  ZIP=90011  pop=102,308  hu=24,348  median_income=$47,126.00  per_capita=$11,215.39
+  ZIP=90012  pop=33,851  hu=15,327  median_income=$53,278.00  per_capita=$24,123.13
+  ZIP=90013  pop=15,589  hu=9,420  median_income=$22,291.00  per_capita=$13,469.83
+  ZIP=90014  pop=9,254  hu=6,788  median_income=$31,332.00  per_capita=$22,982.67
+  ZIP=90015  pop=27,324  hu=14,593  median_income=$53,062.00  per_capita=$28,338.96
+  ZIP=90016  pop=46,512  hu=17,716  median_income=$53,659.00  per_capita=$20,438.23
+  ZIP=90017  pop=27,295  hu=15,191  median_income=$44,607.00  per_capita=$24,825.97
+  ZIP=90018  pop=50,179  hu=17,553  median_income=$55,275.00  per_capita=$19,335.62
+  ZIP=90019  pop=62,002  hu=25,266  median_income=$61,616.00  per_capita=$25,108.70
+  ZIP=90020  pop=38,694  hu=18,516  median_income=$51,013.00  per_capita=$24,410.93
+  ZIP=90021  pop=5,192  hu=1,725  median_income=$25,364.00  per_capita=$8,426.98
+QUERY_ELAPSED_SECONDS=26.052
+Result saved to: hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/results/Q3_rdd_result
+stream closed EOF for dsml00305-priv/q3-rdd-py-15f0b69e7ed6fa9a-driver (spark-kubernetes-driver)
