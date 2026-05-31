@@ -94,7 +94,7 @@ for hint in ("BROADCAST", "MERGE", "SHUFFLE_HASH", "SHUFFLE_REPLICATE_NL"):
     print(f"QUERY_ELAPSED_SECONDS_{hint}={elapsed:.3f}")
 
 print(f"\n{'='*60}")
-print("  Query 3 – Join Strategy Comparison")
+print("  Query 3 - Join Strategy Comparison")
 print(f"{'='*60}")
 print(f"  {'Strategy':<25}  {'Time (sec)':>10}")
 for h, t in sorted(timings.items(), key=lambda x: x[1]):
