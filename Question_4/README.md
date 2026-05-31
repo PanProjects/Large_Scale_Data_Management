@@ -1,8 +1,8 @@
-# Ζητούμενο 4 – Query 3: DataFrame και RDD APIs
+# Ζητούμενο 4 - Query 3: DataFrame και RDD APIs
 
 ## 4.1 Περιγραφή Query 3
 
-Για κάθε ZIP Code του Los Angeles, υπολογίζεται το **εκτιμώμενο μέσο ετήσιο κατακεφαλήν εισόδημα** για τη διετία 2020–2021, συνδυάζοντας:
+Για κάθε ZIP Code του Los Angeles, υπολογίζεται το **εκτιμώμενο μέσο ετήσιο κατακεφαλήν εισόδημα** για τη διετία 2020-2021, συνδυάζοντας:
 
 - **Δεδομένα απογραφής 2020** (`LA_Census_Blocks_2020.geojson`): πληθυσμός και αριθμός κατοικιών ανά census block
 - **Δεδομένα εισοδήματος 2021** (`LA_income_2021.csv`): μέσο εισόδημα νοικοκυριού ανά ZIP code
@@ -122,7 +122,7 @@ spark-submit \
 
 ---
 
-## Step 3 – Run Query 3: RDD API
+## Step 3 - Run Query 3: RDD API
 
 ```bash
 spark-submit \

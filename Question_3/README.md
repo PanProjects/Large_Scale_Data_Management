@@ -1,4 +1,4 @@
-# Ζητούμενο 3 – Query 2: DataFrame και Spark SQL APIs
+# Ζητούμενο 3 - Query 2: DataFrame και Spark SQL APIs
 
 ## 3.1 Περιγραφή Query 2
 

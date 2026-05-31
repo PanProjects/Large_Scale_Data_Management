@@ -1,4 +1,4 @@
-# Ζητούμενο 1 – Μορφές Δεδομένων: CSV vs Parquet
+# Ζητούμενο 1 - Μορφές Δεδομένων: CSV vs Parquet
 
 ## Ερώτημα
 
@@ -35,7 +35,7 @@
 
 ---
 
-### Βήμα 1 – Φόρτωση περιβάλλοντος
+### Βήμα 1 - Φόρτωση περιβάλλοντος
 
 ```bash
 source ~/bigdata-env.sh
@@ -44,7 +44,7 @@ echo $DSML_USER   # πρέπει να εμφανίσει π.χ. dsml00305
 
 ---
 
-### Βήμα 2 – Upload scripts στο HDFS
+### Βήμα 2 - Upload scripts στο HDFS
 
 ```bash
 hadoop fs -mkdir -p hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/${DSML_USER}/code
@@ -55,7 +55,7 @@ hadoop fs -put -f Q1_csv_to_parquet.py Q1_csv.py Q1_parquet.py \
 
 ---
 
-### Βήμα 3 – Μετατροπή CSV σε Parquet (μία φορά)
+### Βήμα 3 - Μετατροπή CSV σε Parquet (μία φορά)
 
 ```bash
 spark-submit \
@@ -74,7 +74,7 @@ hadoop fs -ls hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/${DSML_US
 
 ---
 
-### Βήμα 4 – Εκτέλεση Query 1 σε CSV
+### Βήμα 4 - Εκτέλεση Query 1 σε CSV
 
 ```bash
 spark-submit \
@@ -89,7 +89,7 @@ spark-submit \
 
 ---
 
-### Βήμα 5 – Εκτέλεση Query 1 σε Parquet
+### Βήμα 5 - Εκτέλεση Query 1 σε Parquet
 
 ```bash
 spark-submit \
@@ -104,7 +104,7 @@ spark-submit \
 
 ---
 
-### Βήμα 6 – Ανάκτηση logs από k9s ή kubectl
+### Βήμα 6 - Ανάκτηση logs από k9s ή kubectl
 
 ```bash
 # pods:
@@ -121,9 +121,9 @@ kubectl logs <driver-pod-name> -n ${DSML_USER}-priv | grep "QUERY_ELAPSED\|segme
 
 ---
 
-## Μέρος Γ – Αποτελέσματα
+## Μέρος Γ - Αποτελέσματα
 
-### Query 1 – Αποτέλεσμα (ίδιο και στα δύο formats)
+### Query 1 - Αποτέλεσμα (ίδιο και στα δύο formats)
 
 ```
 +---------+-----------+----------+

@@ -1,4 +1,4 @@
-# Ζητούμενο 2 – Query 1: DataFrame (no UDF), DataFrame (UDF) και RDD APIs
+# Ζητούμενο 2 - Query 1: DataFrame (no UDF), DataFrame (UDF) και RDD APIs
 
 ## 2.1 Περιγραφή Query 1
 
@@ -8,10 +8,10 @@
 
 | Τμήμα | Ώρες (HHMM format) |
 |---|---|
-| Πρωί (Morning) | 0500 – 1159 |
-| Απόγευμα (Afternoon) | 1200 – 1659 |
-| Βράδυ (Evening) | 1700 – 2059 |
-| Νύχτα (Night) | 2100 – 2359 **και** 0000 – 0459 |
+| Πρωί (Morning) | 0500 - 1159 |
+| Απόγευμα (Afternoon) | 1200 - 1659 |
+| Βράδυ (Evening) | 1700 - 2059 |
+| Νύχτα (Night) | 2100 - 2359 **και** 0000 - 0459 |
 
 Η στήλη `TIME OCC` αποθηκεύεται ως ακέραιος σε HHMM format (π.χ. 1430 = 14:30).
 
