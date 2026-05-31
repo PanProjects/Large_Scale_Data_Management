@@ -1,0 +1,101 @@
+
+(4) Filter [codegen id : 1[]
+Input [3[]: [DR_NO#17, LAT#43, LON#44[]
+Condition : (((isnotnull(LAT#43) AND NOT (LAT#43 = 0.0)) AND isnotnull(LON#44)) AND NOT (LON#44 = 0.0))
+
+(5) Scan csv 
+Output [3[]: [X#94, Y#95, DIVISION#97[]
+Batched: false
+Location: InMemoryFileIndex [hdfs://hdfs-namenode.default.svc.cluster.local:9000/data/LA_Police_Stations.csv]
+PushedFilters: [IsNotNull(Y), IsNotNull(X)]
+ReadSchema: struct<X:string,Y:string,DIVISION:string>
+
+(6) Filter
+Input [3[]: [X#94, Y#95, DIVISION#97[]
+Condition : (((isnotnull(Y#95) AND isnotnull(X#94)) AND isnotnull(cast(Y#95 as double))) AND isnotnull(cast(X#94 as double)))
+
+(7) Project
+Output [3[]: [DIVISION#97 AS division#106, cast(Y#95 as double) AS st_lat#107, cast(X#94 as double) AS st_lon#108]
+Input [3[]: [X#94, Y#95, DIVISION#97[]
+
+(8) CartesianProduct
+Join type: Inner
+Join condition: None
+
+(9) Project
+Output [3[]: [DR_NO#17, division#106, SQRT((POWER(((LAT#43 - st_lat#107) * 111.0), 2.0) + POWER(((LON#44 - st_lon#108) * 92.0), 2.0))) AS distance_km#832]
+Input [6[]: [DR_NO#17, LAT#43, LON#44, division#106, st_lat#107, st_lon#108[]
+
+(10) Sort
+Input [3[]: [DR_NO#17, division#106, distance_km#832[]
+Arguments: [DR_NO#17 ASC NULLS FIRST[], false, 0
+
+(11) SortAggregate
+Input [3[]: [DR_NO#17, division#106, distance_km#832[]
+Keys [1[]: [DR_NO#17[]
+Functions [1[]: [partial_min(struct(distance_km, distance_km#832, division, division#106))]
+Aggregate Attributes [1[]: [min#920[]
+Results [2[]: [DR_NO#17, min#921[]
+
+(12) Exchange
+Input [2[]: [DR_NO#17, min#921[]
+Arguments: hashpartitioning(DR_NO#17, 200), ENSURE_REQUIREMENTS, [plan_id=1440]
+
+(13) Sort
+Input [2[]: [DR_NO#17, min#921[]
+Arguments: [DR_NO#17 ASC NULLS FIRST[], false, 0
+
+(14) SortAggregate
+Input [2[]: [DR_NO#17, min#921[]
+Keys [1[]: [DR_NO#17[]
+Functions [1[]: [min(struct(distance_km, distance_km#832, division, division#106))]
+Aggregate Attributes [1[]: [min(struct(distance_km, distance_km#832, division, division#106))#847]
+Results [1[]: [min(struct(distance_km, distance_km#832, division, division#106))#847 AS nearest#848]
+
+(15) Project
+Output [2[]: [nearest#848.division AS division#851, nearest#848.distance_km AS distance_km#852[]
+Input [1[]: [nearest#848[]
+
+(16) HashAggregate
+Input [2[]: [division#851, distance_km#852[]
+Keys [1[]: [division#851[]
+Functions [2[]: [partial_avg(distance_km#852), partial_count(1)]
+Aggregate Attributes [3[]: [sum#914, count#915L, count#916L[]
+Results [4[]: [division#851, sum#917, count#918L, count#919L[]
+
+(17) Exchange
+Input [4[]: [division#851, sum#917, count#918L, count#919L[]
+Arguments: hashpartitioning(division#851, 200), ENSURE_REQUIREMENTS, [plan_id=1446]
+
+(18) HashAggregate
+Input [4[]: [division#851, sum#917, count#918L, count#919L[]
+Keys [1[]: [division#851[]
+Functions [2[]: [avg(distance_km#852), count(1)]
+Aggregate Attributes [2[]: [avg(distance_km#852)#859, count(1)#861L]
+Results [3[]: [division#851, round(avg(distance_km#852)#859, 3) AS average_distance#860, count(1)#861L AS crime_count#862L]
+
+(19) Exchange
+Input [3[]: [division#851, average_distance#860, crime_count#862L[]
+Arguments: rangepartitioning(crime_count#862L DESC NULLS LAST, 200), ENSURE_REQUIREMENTS, [plan_id=1449]
+
+(20) Sort
+Input [3[]: [division#851, average_distance#860, crime_count#862L[]
+Arguments: [crime_count#862L DESC NULLS LAST[], true, 0
+
+(21) AdaptiveSparkPlan
+Output [3[]: [division#851, average_distance#860, crime_count#862L[]
+Arguments: isFinalPlan=false
+
+
+QUERY_ELAPSED_SECONDS_SHUFFLE_REPLICATE_NL=10.602
+
+=================================================================
+  Query 4 – Join Strategy Comparison
+=================================================================
+  Strategy                   Time (sec)
+  SHUFFLE_REPLICATE_NL           10.602
+  MERGE                          11.416
+  SHUFFLE_HASH                   11.757
+  BROADCAST                      12.998
+=================================================================
+stream closed EOF for dsml00305-priv/q4-join-strategies-py-6923879e80183e0d-driver (spark-kubernetes-driver)

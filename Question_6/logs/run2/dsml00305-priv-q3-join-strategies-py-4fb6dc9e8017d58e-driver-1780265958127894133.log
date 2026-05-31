@@ -1,0 +1,101 @@
+
+(10) ShuffleQueryStage
+Output [3[]: [zip#105, sum#151L, sum#152L[]
+Arguments: 0
+
+(11) HashAggregate [codegen id : 2[]
+Input [3[]: [zip#105, sum#151L, sum#152L[]
+Keys [1[]: [zip#105[]
+Functions [2[]: [sum(population#106L), sum(housing_units#107L)]
+Aggregate Attributes [2[]: [sum(population#106L)#114L, sum(housing_units#107L)#116L]
+Results [3[]: [zip#105, sum(population#106L)#114L AS total_pop#115L, sum(housing_units#107L)#116L AS total_hu#117L]
+
+(12) Filter
+Input [1[]: [features#1[]
+Condition : ((size(features#1, true) > 0) AND isnotnull(features#1))
+
+(13) Generate
+Input [1[]: [features#1[]
+Arguments: explode(features#1), false, [feat#9[]
+
+(14) Filter
+Input [1[]: [feat#9[]
+Condition : (isnotnull(trim(feat#9.properties.ZCTA20, None)) AND (isnotnull(feat#9.properties.POP20) AND (feat#9.properties.POP20 > 0)))
+
+(15) Project
+Output [3[]: [trim(feat#9.properties.ZCTA20, None) AS zip#105, feat#9.properties.POP20 AS population#106L, feat#9.properties.HOUSING20 AS housing_units#107L]
+Input [1[]: [feat#9[]
+
+(16) HashAggregate
+Input [3[]: [zip#105, population#106L, housing_units#107L[]
+Keys [1[]: [zip#105[]
+Functions [2[]: [partial_sum(population#106L), partial_sum(housing_units#107L)]
+Aggregate Attributes [2[]: [sum#149L, sum#150L[]
+Results [3[]: [zip#105, sum#151L, sum#152L[]
+
+(17) Exchange
+Input [3[]: [zip#105, sum#151L, sum#152L[]
+Arguments: hashpartitioning(zip#105, 200), ENSURE_REQUIREMENTS, [plan_id=51]
+
+(18) HashAggregate
+Input [3[]: [zip#105, sum#151L, sum#152L[]
+Keys [1[]: [zip#105[]
+Functions [2[]: [sum(population#106L), sum(housing_units#107L)]
+Aggregate Attributes [2[]: [sum(population#106L)#114L, sum(housing_units#107L)#116L]
+Results [3[]: [zip#105, sum(population#106L)#114L AS total_pop#115L, sum(housing_units#107L)#116L AS total_hu#117L]
+
+(19) AdaptiveSparkPlan
+Output [3[]: [zip#105, total_pop#115L, total_hu#117L[]
+Arguments: isFinalPlan=true
+
+(20) Filter
+Input [3[]: [zip#105, total_pop#115L, total_hu#117L[]
+Condition : isnotnull(zip#105)
+
+(21) Scan csv 
+Output [2[]: [Zip Code#138, Estimated Median Income#140[]
+Batched: false
+Location: InMemoryFileIndex [hdfs://hdfs-namenode.default.svc.cluster.local:9000/data/LA_income_2021.csv]
+ReadSchema: struct<Zip Code:string,Estimated Median Income:string>
+
+(22) Filter
+Input [2[]: [Zip Code#138, Estimated Median Income#140[]
+Condition : (isnotnull(trim(Zip Code#138, None)) AND isnotnull(cast(regexp_replace(trim(Estimated Median Income#140, None), [\$,\s], , 1) as double)))
+
+(23) Project
+Output [2[]: [trim(Zip Code#138, None) AS zip#144, cast(regexp_replace(trim(Estimated Median Income#140, None), [\$,\s], , 1) as double) AS median_income#145]
+Input [2[]: [Zip Code#138, Estimated Median Income#140[]
+
+(24) CartesianProduct
+Join type: Inner
+Join condition: (zip#105 = zip#144)
+
+(25) Project
+Output [5[]: [zip#105, total_pop#115L, total_hu#117L, median_income#145, round((median_income#145 * (cast(total_hu#117L as double) / cast(total_pop#115L as double))), 2) AS per_capita_income#686]
+Input [5[]: [zip#105, total_pop#115L, total_hu#117L, zip#144, median_income#145[]
+
+(26) Exchange
+Input [5[]: [zip#105, total_pop#115L, total_hu#117L, median_income#145, per_capita_income#686[]
+Arguments: rangepartitioning(zip#105 ASC NULLS FIRST, 200), ENSURE_REQUIREMENTS, [plan_id=829]
+
+(27) Sort
+Input [5[]: [zip#105, total_pop#115L, total_hu#117L, median_income#145, per_capita_income#686[]
+Arguments: [zip#105 ASC NULLS FIRST[], true, 0
+
+(28) AdaptiveSparkPlan
+Output [5[]: [zip#105, total_pop#115L, total_hu#117L, median_income#145, per_capita_income#686[]
+Arguments: isFinalPlan=false
+
+
+QUERY_ELAPSED_SECONDS_SHUFFLE_REPLICATE_NL=16.372
+
+============================================================
+  Query 3 – Join Strategy Comparison
+============================================================
+  Strategy                   Time (sec)
+  MERGE                           8.759
+  BROADCAST                       9.413
+  SHUFFLE_HASH                   13.528
+  SHUFFLE_REPLICATE_NL           16.372
+============================================================
+stream closed EOF for dsml00305-priv/q3-join-strategies-py-4fb6dc9e8017d58e-driver (spark-kubernetes-driver)
