@@ -85,7 +85,7 @@ spark-submit \
     hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/${DSML_USER}/code/Q1_csv.py
 ```
 
-Από τα logs καταγράφουμε τον χρόνο εκτέλεσης QUERY_ELAPSED_SECONDS = 6.625 seconds
+Από τα logs καταγράφουμε το QUERY_ELAPSED_SECONDS
 
 ---
 
@@ -100,7 +100,7 @@ spark-submit \
     hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/${DSML_USER}/code/Q1_parquet.py
 ```
 
-Από τα logs καταγράφουμε: QUERY_ELAPSED_SECONDS=5.070
+Από τα logs καταγράφουμε το QUERY_ELAPSED_SECONDS
 
 ---
 
