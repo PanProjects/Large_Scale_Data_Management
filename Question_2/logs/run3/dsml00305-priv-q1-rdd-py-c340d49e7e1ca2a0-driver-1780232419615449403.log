@@ -1,0 +1,56 @@
+26/05/31 12:57:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/05/31 12:57:55 INFO SparkContext: Running Spark version 3.5.8
+26/05/31 12:57:55 INFO SparkContext: OS info Linux, 6.1.0-48-amd64, amd64
+26/05/31 12:57:55 INFO SparkContext: Java version 11.0.29
+26/05/31 12:57:55 INFO ResourceUtils: ==============================================================
+26/05/31 12:57:55 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/05/31 12:57:55 INFO ResourceUtils: ==============================================================
+26/05/31 12:57:55 INFO SparkContext: Submitted application: Q2_RDD
+26/05/31 12:57:55 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/05/31 12:57:55 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/05/31 12:57:55 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/05/31 12:57:55 INFO SecurityManager: Changing view acls to: spark,dsml00305
+26/05/31 12:57:55 INFO SecurityManager: Changing modify acls to: spark,dsml00305
+26/05/31 12:57:55 INFO SecurityManager: Changing view acls groups to: 
+26/05/31 12:57:55 INFO SecurityManager: Changing modify acls groups to: 
+26/05/31 12:57:55 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, dsml00305; groups with view permissions: EMPTY; users with modify permissions: spark, dsml00305; groups with modify permissions: EMPTY
+26/05/31 12:57:55 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+26/05/31 12:57:55 INFO SparkEnv: Registering MapOutputTracker
+26/05/31 12:57:55 INFO SparkEnv: Registering BlockManagerMaster
+26/05/31 12:57:55 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/05/31 12:57:55 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/05/31 12:57:55 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/05/31 12:57:55 INFO DiskBlockManager: Created local directory at /var/data/spark-7a5c47c2-4da1-4fe6-ad32-a3a84963395a/blockmgr-9066998f-8faf-4ef9-a872-42b6738fd670
+26/05/31 12:57:55 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/05/31 12:57:56 INFO SparkEnv: Registering OutputCommitCoordinator
+26/05/31 12:57:56 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/05/31 12:57:56 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/05/31 12:57:56 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+26/05/31 12:57:58 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 2, known: 0, sharedSlotFromPendingPods: 2147483647.
+26/05/31 12:57:58 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+26/05/31 12:57:58 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+26/05/31 12:57:58 INFO NettyBlockTransferService: Server created on q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc 10.233.126.95:7079
+26/05/31 12:57:58 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/05/31 12:57:58 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 12:57:58 INFO BlockManagerMasterEndpoint: Registering block manager q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc:7079 with 413.9 MiB RAM, BlockManagerId(driver, q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 12:57:58 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 12:57:58 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, q1-rdd-py-c340d49e7e1ca2a0-driver-svc.dsml00305-priv.svc, 7079, None)
+26/05/31 12:57:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 12:57:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/05/31 12:57:59 INFO SingleEventLogFileWriter: Logging events to hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/logs/spark-c1f04279903547ff81eed888bdd2de0e.inprogress
+26/05/31 12:58:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.124.232:41844
+26/05/31 12:58:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.233.98.145:38526
+26/05/31 12:58:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.124.232:41860) with ID 1,  ResourceProfileId 0
+26/05/31 12:58:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.124.232:43525 with 1048.8 MiB RAM, BlockManagerId(1, 10.233.124.232, 43525, None)
+26/05/31 12:58:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.233.98.145:38528) with ID 2,  ResourceProfileId 0
+26/05/31 12:58:04 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+26/05/31 12:58:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.233.98.145:38563 with 1048.8 MiB RAM, BlockManagerId(2, 10.233.98.145, 38563, None)
+
+=== Query 1 Results (RDD) ===
+  Night         count=  251094  pct= 34.08%
+  Evening       count=  198292  pct= 26.92%
+  Afternoon     count=  156432  pct= 21.23%
+  Morning       count=  130866  pct= 17.76%
+QUERY_ELAPSED_SECONDS=72.002
+Result saved to: hdfs://hdfs-namenode.default.svc.cluster.local:9000/user/dsml00305/results/Q2_rdd_result
+stream closed EOF for dsml00305-priv/q1-rdd-py-c340d49e7e1ca2a0-driver (spark-kubernetes-driver)
